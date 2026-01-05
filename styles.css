@@ -1,0 +1,98 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: #0f172a;
+  color: #fff;
+  --container-width: 1300px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #fff;
+}
+
+.hero {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 120px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100lvh;
+}
+
+br {
+  margin-top: 24px;
+}
+
+.title {
+  font-size: 48px;
+}
+
+.image-container {
+  display: flex;
+}
+
+.description {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  gap: 12px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 48px;
+  font-size: 22px;
+}
+
+.projects {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 90px 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 156px;
+}
+
+.projects-title {
+  padding: 0 120px;
+  font-size: 56px;
+  text-align: center;
+}
+
+.project-title {
+  font-size: 36px;
+  text-align: center;
+}
+
+.project-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.project-content {
+  margin-top: 68px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.project-description {
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects>.project:nth-child(2n) .project-content>*:first-child {
+  order: 2;
+}
