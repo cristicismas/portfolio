@@ -9,27 +9,32 @@
 </head>
 
 <body>
-    <div class='hero'>
-        <h1 class='title'>Hi, I'm Cristi.</h1>
+    <div class='heroContainer'>
 
-        <div class='description'>
-            <span>Professional developer for 7 years.</span>
-            <span>Experience in game, ui, tools and web development.</span>
-            <span>Dependeable and adaptable hacker with a passion for solving hard problems.</span>
-        </div>
+        <div class='hero' id='hero'>
+            <h1 class='title'>Hi, I'm Cristi.</h1>
 
-        <div class='links'>
-            <div>
-                <a href='#projects'>My projects</a>
+            <div class='description'>
+                <span>Professional software developer with <b>7 years</b> of experience.</span>
+                <span>Experience in game, ui, tools and web development.</span>
+                <span><b>Dependeable</b> and <b>adaptable</b> developer with a passion for solving hard problems.</span>
             </div>
 
-            <div>
-                <a href='/blog'>My blog</a>
+            <div class='links'>
+                <div>
+                    <a href='#projects-title'>Projects</a>
+                </div>
+
+                <div>
+                    <a href='/blog'>Blog</a>
+                </div>
             </div>
+
         </div>
+        <div class='dots' id='dots'></div>
     </div>
 
-    <h2 class="projects-title">Projects</h2>
+    <h2 class="projects-title" id='projects-title'>Projects</h2>
 
     <div id='projects' class="projects">
         <div class='project'>
@@ -40,12 +45,26 @@
                     <img class='project-image' src='https://placehold.co/600x400' width='600' height='400' />
                 </div>
 
-                <p class='project-description'>
-                    A vampire surivor-like game I developed in 2025 in Godot. <br /> It features
-                    unique player abilities and weapons, procedually generated props and tiles, many different enemies
-                    with various mechanics.<br /> It's a fully fledged game that I developed alone, including all the
-                    programming, game design and the art.
-                </p>
+                <div>
+                    <p class='project-description'>
+                        A vampire surivor-like game I developed in 2025 with <b>Godot.</b>
+                        <span class='spacer' /> It features
+                        unique player abilities and weapons, procedually generated props and tiles, many different
+                        enemies
+                        with various mechanics.
+                        <span class='spacer' /> It's a fully <b>fledged game that I developed alone</b>, including all
+                        the <b>programming</b>, <b>game design</b> and the <b>art</b>.
+
+                    </p>
+
+                    <div class='project-link-container'>
+                        <a target='_blank' class='project-link'
+                            href='https://store.steampowered.com/app/3600970/Paragon_Of_Time/'>
+                            <img src='./link.svg' width='18' />
+                            Steam
+                            link</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -58,14 +77,22 @@
                     <img class='project-image' src='https://placehold.co/600x400' width='600' height='400' />
                 </div>
 
-                <p class='project-description'>
-                    Language Server Protocol implementation for Neovim, written in
-                    Rust, that provides basic autocomplete features.<br />This project was a personal necessity to
-                    me
-                    since the official LSP from Godot did not have good support for neovim at the time, so I decided
-                    to
-                    write an LSP myself.
-                </p>
+                <div>
+                    <p class='project-description'>
+                        <b>Language Server Protocol</b> implementation for <b>neovim</b>, written in
+                        <b>Rust</b>, that provides basic autocomplete features.
+                        <span class='spacer' />This project was a personal necessity
+                        to me since the official LSP from <b>Godot</b> did not have good support for neovim at the time,
+                        so I
+                        decided to write an LSP myself.
+                    </p>
+                    <div class='project-link-container'>
+                        <a target='_blank' class='project-link' href='https://github.com/cristicismas/gdscript-lsp'>
+                            <img src='./link.svg' width='18' />
+                            Github
+                            link</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -77,16 +104,29 @@
                     <img class='project-image' src='https://placehold.co/600x400' width='600' height='400' />
                 </div>
 
-                <p class='project-description'>
-                    A work-in-progress RTS game in an outer space setting, with special
-                    features such as formation-based abilities, a unique thrilling story, and proper real-time
-                    action
-                    where every split second counts.<br />Made using raylib and Odin with basically no other
-                    dependencies.
-                </p>
+                <div>
+                    <p class='project-description'>
+                        A work-in-progress <b>RTS game</b> in an outer space setting, with special
+                        features such as formation-based abilities, a unique thrilling story, and proper real-time
+                        action
+                        where every split second counts.
+                        <span class='spacer' />Made using <b>raylib</b> and <b>Odin</b> with basically no
+                        other
+                        dependencies.
+                    </p>
+
+                    <div class='project-link-container'>
+                        <a class='project-link' href='/blog' target='_blank'>
+                            <img src='./link.svg' width='18' />
+                            Read Blog
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src='./script.js'></script>
 </body>
 
 </html>

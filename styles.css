@@ -5,17 +5,33 @@ html {
   max-width: 100%;
   overflow-x: hidden;
   background-color: #0f172a;
-  color: #fff;
   --container-width: 1300px;
+  --color-default: #a1b5d1;
+  --color-accent: #c0d8f9;
+  color: var(--color-default);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-accent);
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 a {
-  color: #fff;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.heroContainer {
+  position: relative;
+  min-height: 100lvh;
 }
 
 .hero {
@@ -24,10 +40,10 @@ a {
   padding: 120px;
   display: flex;
   flex-direction: column;
-  min-height: 100lvh;
 }
 
-br {
+.spacer {
+  display: block;
   margin-top: 24px;
 }
 
@@ -47,12 +63,25 @@ br {
   gap: 12px;
 }
 
+b {
+  color: var(--color-accent);
+}
+
 .links {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-top: 48px;
   font-size: 22px;
+}
+
+.hero .links a {
+  color: var(--color-default);
+  transition: color .3s;
+
+  &:hover {
+    color: var(--color-accent);
+  }
 }
 
 .projects {
@@ -89,10 +118,57 @@ br {
 
 .project-description {
   font-size: 24px;
-  display: flex;
-  flex-direction: column;
 }
 
 .projects>.project:nth-child(2n) .project-content>*:first-child {
   order: 2;
+}
+
+.project-link-container {
+  margin-top: 32px;
+}
+
+.project-link {
+  font-size: 24px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 14px;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width .2s;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.dots {
+  padding: 40px;
+  pointer-events: none;
+  user-select: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 40px);
+  gap: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+.dot {
+  opacity: 0;
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-default);
+  border-radius: 20px;
+  opacity: .1;
+  transition: all .05s;
 }
