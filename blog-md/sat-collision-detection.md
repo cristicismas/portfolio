@@ -22,7 +22,7 @@ To do this we will need to first find the highest and lowest points of both obje
 
 ![AABB collision example with the highest and lowest points projected on the y axis.](../images/SAT/aabb_no_collision_projected_y.png)
 
-As you can see, the two ranges intersect. That means that we have collision on the y axis. Now we need to check the x axis as well, as we can only be sure we have no collision when all axes have been checked. If we had no collision on the y axis, that would have meant that the algorithm is done and the two objects do not touch each other, so we could have exited early from our algorithm, to avoid any additional calculations. This early exit strategy will also later apply to the SAT algorithm.
+As you can see, the two ranges intersect. That means that we have collision on the y axis. Now we need to check the x axis as well, as we can only be sure we have no collision when all axes have been checked. If we had no collision on the y axis, that would have meant that the algorithm is done and the two objects do not touch each other, so we could have exited early, to avoid any additional calculations. This early exit strategy will also later apply to the SAT algorithm.
 
 Now, onto the x axis. Do the same as before regarding the point selection, only this time take the left-most and right-most points of each object. If we project the points onto the x axis, this is what the projection would look like:
 
@@ -34,13 +34,15 @@ We can see that the ranges of the 2 rectangles do not touch. That means that the
 
 Projecting the vectors is something that we will cover in the SAT section of this article. Luckily, the code implementation doesn't include any projection for AABB collision detection, so it is actually simpler than the illustration. We only need to compare the x and y components of the edge points, since their projected points would have the same coordinates along the axis anyways.
 
+This is the whole AABB algorithm explained, and will serve as a solid base for understanding the SAT algorithm.
+
 ## SAT Collision algorithm
 
 The Separating Axis Theorem states that if two convex shapes do not overlap, there __must__ exist a line (axis) that separates them. You could even see this phenomenon in our simple rectangle example, where the y axis was (one of) the separating axes between the two objects.
 
 ![AABB collision example with the y axis as the separating axis.](../images/SAT/aabb_no_collision_separating_axis.png)
 
-You may have noticed that I said the y axis was only __one of__ the separating axes. That's because if the objects are not intersecting, there can be an infinite number of separating axes. So, how do we find one axis that separates the objects, out of an infinite number of axes?
+You may have noticed that I said the y axis was only __one of__ the separating axes. That's because if the objects are not intersecting, there can be an infinite number of separating axes. So, how do we find one axis that separates the objects, out of an infinite number of possibilities?
 
 To answer this, let's first change the illustration to a proper example where SAT would be useful. As I previously wrote, AABB detection doesn't help us anymore if the objects are rotated. Let's rotate them, and try the AABB algorithm again!
 
@@ -48,9 +50,9 @@ To answer this, let's first change the illustration to a proper example where SA
 
 This example looks a little bit busy, so let me explain what's going on.
 
-We have slightly rotated both objects, and moved them closer together to show how AABB fails on rotated objects. Then, we are applying the same principle to the objects, we are projecting the minimum and maximum points onto the axis to see if they intersect. This time though, they intersect on both the x axis and the y axis, even though we can see that the objects don't actually touch.
+We have slightly rotated both objects, and moved them closer together to show how AABB fails on rotated objects. Then, we are applying the same principle to the objects, we are projecting the __minimum__ and __maximum__ points onto the axis to see if they intersect. This time though, they intersect on both the x axis and the y axis, even though we can see that __the objects don't actually touch__.
 
-To get around this limitation, we need to efficiently find an axis that separates both of these shapes. Such an axis can be found by treating the normal vectors of each edge as separate axes, and using the same principle on these new axes.
+To get around this limitation, we need to efficiently find an axis that separates both of these shapes. Such an axis can be found by treating the __normal vectors__ of each __edge__ as a __separate axis__, and using AABB principle for each one of these axes.
 
 I will switch to triangles now instead of rectangles, to have as few edges (axes) as possible, and illustrate the example more clearly, but please note, this algorithm will work with any polygon that is convex. I will illustrate later how this fails with concave shapes.
 
@@ -58,7 +60,7 @@ I will switch to triangles now instead of rectangles, to have as few edges (axes
 
 I've also taken the liberty of drawing the normals for each edge (the little arrows perpendicular to each edge). A normal is just a vector that is perpendicular to another vector, in this case perpendicular to the triangle edges.
 
-These normals are now the axes that we need to project the minimum and maximum vertices onto, and check for overlapping ranges. If any of the axes has a gap between the shapes, that means that we have found our separating axis, and we can exit early knowing that there is no collision. 
+These normals are now the axes that we need to project the minimum and maximum vertices on, and check for overlapping ranges. If any of the axes has a gap between the shapes, that means that we have found our separating axis, and we can exit early knowing that there is no collision. 
 
 This algorithm is slightly more involved than AABB, since we now need to calculate the vector of each edge, then calculate the normal of the edge, and then project the vertices onto the normal to find the shape's minimum and maximum points. Let's do this together, step by step.
 
@@ -82,21 +84,23 @@ or
 normal({ x, y }) == { -y, x }
 ```
 
-This operation will give us one of the normals of the edge (the edge has 2 normals, two vectors perpendicular to it with an opposite direction. We don't care which one we compute, since the projection on the vector will be the same.)
+This operation will give us one of the normals of the edge (the edge has 2 normals, two vectors perpendicular to it with an opposite direction. We don't care which one we compute, since the projection of the vector will be the same).
 
 ![SAT collision example with 2 triangles, and the normal of one edge shown](../images/SAT/sat_no_collision_triangles_normal.png)
 
-The third step we need to do is project the vertices. You can directly do this in code, but first I want to pull normal apart from the shape so we can clearly see what's going on in the illustration. We can freely move the normal and increase its length. As long as we don't rotate it, the projections will be the same.
+The third step we need to do is project the vertices. You can directly do this in code, but first I want to pull the normal apart from the shape so we can clearly see what's going on in the illustration.
+
+We can freely move the normal and increase its length for the sake of visualizing it more clearly. In code, you will need to keep your normal vector normalized (unit length). As long as we don't rotate the normal axis, the principle is the same.
 
 ![SAT collision example with 2 triangles, and the normal of one edge shown apart from the triangle](../images/SAT/sat_no_collision_triangles_long_normal.png)
 
-Now we can visualize the projections more clearly. Let's project all the vertices of the B triangle onto our normal. Imagine a projection as drawing a perpendicular line, from a point (your vertex), onto a vector (your normal), and computing the length of that projection along the normal.
+Now we can visualize the projections more clearly. Let's project all the vertices of the B triangle onto our normal. Imagine a projection as drawing a perpendicular line, from a point (your vertex), onto a vector (your normal), and computing the length to the projected point along the normal.
 
 ![SAT collision example with 2 triangles, the vertices of the second triangle are projected onto the chosen normal](../images/SAT/sat_no_collision_triangles_projected.png)
 
 Here we can see that the minimum point on the axis is the projection of __v3__, and the maximum point along the axis is the projection of __v1__. In code, we can find this out by computing the projection length of each point. The projection length is the result of the __dot product__ between the vertex and the normal axis.
 
-At this point the normal should also be normalized (set its magnitude to 1).
+At this point the normal should also be normalized (unit length).
 
 ```
 normal = normalize(normal)
@@ -181,7 +185,7 @@ If neither __B1__, nor __B2__ collide with __A__, there is no collision between 
 
 Explaining how to separate a concave polygon into convex polygons is beyond the scope of this article. If you need it, you should look into __convex decomposition__.
 
-### Some possible optimization
+### Some possible optimizations
 
 - For any shape with parallel edges, such as rectangles and rhombi, you can skip checking __half__ of the normals, since half of them will just be pointing in the opposite direction from the others, but this algorithm doesn't care about the direction of the axes.
 - If you need to check the collision between the same exact shape type, you can skip getting the normals of one of the shapes completely, you don't need to compute the projections on the same axes twice.
@@ -194,7 +198,7 @@ If you have found the explanations in this article to be confusing, you may have
 - [How 2D Game Collision Works (Separating Axis Theorem)](https://www.youtube.com/watch?v=dn0hUgsok9M)
 - [Collision Detection with SAT (Math for Game Developers)](https://www.youtube.com/watch?v=-EsWKT7Doww)
 
-For 3D applications you may prefer to use the GJK (Gilbert-Johnson-Keerthi) algorithm since it is more efficient with a wider variety of convex shapes, although it is more involved and complex than SAT. To learn this I recommend Reductible's video on this: [A Strange But Elegant Approach to a Surprisingly Hard Problem (GJK Algorithm)](https://www.youtube.com/watch?v=ajv46BSqcK4).
+For 3D applications you may prefer to use the GJK (Gilbert-Johnson-Keerthi) algorithm since it is more efficient with a wider variety of convex shapes, although it is more involved and complex than SAT. To learn this I recommend Reductible's video on the subject: [A Strange But Elegant Approach to a Surprisingly Hard Problem (GJK Algorithm)](https://www.youtube.com/watch?v=ajv46BSqcK4).
 
 You may also choose to adapt the SAT algorithm to work with 3D, in which case you will need to compute the __face__ normals, instead of the __edge__ normals as we did for 2D.
 
