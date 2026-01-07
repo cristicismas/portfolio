@@ -111,12 +111,14 @@ const onMouseMove = (e) => {
 };
 
 const init = () => {
-  generateDots();
-  updateDots();
+  if (document.getElementById("dots")) {
+    generateDots();
+    updateDots();
 
-  document.addEventListener("mousemove", onMouseMove);
-  document.addEventListener("scroll", updateDots);
-  window.addEventListener("resize", updateDots);
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("scroll", updateDots);
+    window.addEventListener("resize", updateDots);
+  }
 };
 
 init();

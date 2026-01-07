@@ -1,6 +1,7 @@
 # 2D SAT collision detection
 
 ## Introduction
+
 Hi! This is a pretty lengthy article about AABB and SAT collision detection. I tried to explain these concepts as well as I could from a programming point of view, but there may be slight mistakes. Reading this does have some prerequisites however, such as knowing a bit of linear algebra, vector math and what a coordinate system is.
 
 ## The principle
@@ -61,19 +62,25 @@ These normals are now the axes that we need to project the minimum and maximum v
 
 This algorithm is slightly more involved than AABB, since we now need to calculate the vector of each edge, then calculate the normal of the edge, and then project the vertices onto the normal to find the shape's minimum and maximum points. Let's do this together, step by step.
 
-First, let's take an edge at random from the B shape. To compute the edge vector, we simply need to subtract 2 adjacent vectors, in our case, `v1` and `v2`.
+First, let's take an edge at random from the B shape. To compute the edge vector, we simply need to subtract 2 adjacent vectors, in our case, __v1__ and __v2__.
 
-```edge := v1 - v2```
+```
+edge = v1 - v2
+```
 
 ![SAT collision example with 2 triangles, with one edge of the B triangle marked](../images/SAT/sat_no_collision_triangles_edge.png)
 
 Now that we have the edge vector, we need to find the normal vector for that edge. This can simply be done by inverting one of the components of the vector, and switching the place of the components.
 
-```normal({ x, y }) == { y, -x }```
+```
+normal({ x, y }) == { y, -x }
+```
 
 or
 
-```normal({ x, y }) == { -y, x }```
+```
+normal({ x, y }) == { -y, x }
+```
 
 This operation will give us one of the normals of the edge (the edge has 2 normals, two vectors perpendicular to it with an opposite direction. We don't care which one we compute, since the projection on the vector will be the same.)
 
@@ -87,7 +94,7 @@ Now we can visualize the projections more clearly. Let's project all the vertice
 
 ![SAT collision example with 2 triangles, the vertices of the second triangle are projected onto the chosen normal](../images/SAT/sat_no_collision_triangles_projected.png)
 
-Here we can see that the minimum point on the axis is the projection of `v3`, and the maximum point along the axis is the projection of `v1`. In code, we can find this out by computing the projection length of each point. The projection length is the result of the __dot product__ between the vertex and the normal axis.
+Here we can see that the minimum point on the axis is the projection of __v3__, and the maximum point along the axis is the projection of __v1__. In code, we can find this out by computing the projection length of each point. The projection length is the result of the __dot product__ between the vertex and the normal axis.
 
 At this point the normal should also be normalized (set its magnitude to 1).
 
@@ -108,7 +115,7 @@ Let's run the same logic on the __A triangle__ and see where we stand with the p
 
 As you can see, we have detected overlapping ranges on this normal, so this normal is not a separating axis! We need to run the same logic on all the normals in our shapes, until we find one that has no overlap between the projections, or until we run out of normals.
 
-Let's go ahead and check another normal: the normal on the edge formed by the vertices v1 and v3. This time I chose a normal that is a separating axis.
+Let's go ahead and check another normal: the normal on the edge formed by the vertices __v1__ and __v3__. This time I chose a normal that is a separating axis.
 
 ![SAT collision example with 2 triangles, and the normal of another edge illustrated](../images/SAT/sat_no_collision_triangles_v2.png)
 
@@ -136,7 +143,7 @@ Circle to polygon however, does require us to use the concepts previously learne
 
 ![SAT collision example with one triangle and one circle](../images/SAT/sat_triangle_to_circle.png)
 
-After we have the projections the algorithm follows as before. Now the only question is, how do we project the circle? Let's get rid of the triangle for a second.
+After we have the projections, the algorithm follows as before. Now the only question is, how do we project the circle? Let's get rid of the triangle for a second.
 
 ![SAT collision example with one circle with a certain center and radius marked](../images/SAT/sat_circle.png)
 
@@ -170,13 +177,15 @@ There is a possible workaround for this issue, which is to separate the concave 
 
 ![SAT collision example with a convex polygon, and a concave polygon that is split in 2 convex polygons](../images/SAT/sat_concave_separated.png)
 
-If neither __B1__, nor __B2__ collide with __A__, there is no collision between the convex polygon and the concave polygon. Explaining how to separate a concave polygon into convex polygons is beyond the scope of this article, you should look into __convex decomposition__.
+If neither __B1__, nor __B2__ collide with __A__, there is no collision between the convex polygon and the concave polygon.
 
-### Some possible optimizations
+Explaining how to separate a concave polygon into convex polygons is beyond the scope of this article. If you need it, you should look into __convex decomposition__.
+
+### Some possible optimization
 
 - For any shape with parallel edges, such as rectangles and rhombi, you can skip checking __half__ of the normals, since half of them will just be pointing in the opposite direction from the others, but this algorithm doesn't care about the direction of the axes.
-- If you compare the same exact shape type, you can skip one of the shapes completely, you don't need to compute the projections on the same axis twice.
-- Depending on your usecase, you may choose to only check the collision of shapes that close to each other, and discard the shapes that sit at large distances outright.
+- If you need to check the collision between the same exact shape type, you can skip getting the normals of one of the shapes completely, you don't need to compute the projections on the same axes twice.
+- Depending on your use-case, you may choose to only check the collision of shapes that are close to each other, and discard the shapes that sit at large distances outright.
 
 ## Additional resources
 
@@ -185,8 +194,8 @@ If you have found the explanations in this article to be confusing, you may have
 - [How 2D Game Collision Works (Separating Axis Theorem)](https://www.youtube.com/watch?v=dn0hUgsok9M)
 - [Collision Detection with SAT (Math for Game Developers)](https://www.youtube.com/watch?v=-EsWKT7Doww)
 
-For 3D applications you may prefer to use the GJK (Gilbert-Johnson-Keerthi) algorithm since it is more efficient with a wider variety of convex shapes, although it is more involved and complex than SAT. To learn this I recommend Reductible's video on this: [https://www.youtube.com/watch?v=ajv46BSqcK4](https://www.youtube.com/watch?v=ajv46BSqcK4).
+For 3D applications you may prefer to use the GJK (Gilbert-Johnson-Keerthi) algorithm since it is more efficient with a wider variety of convex shapes, although it is more involved and complex than SAT. To learn this I recommend Reductible's video on this: [A Strange But Elegant Approach to a Surprisingly Hard Problem (GJK Algorithm)](https://www.youtube.com/watch?v=ajv46BSqcK4).
 
-You may also choose to adapt the SAT algorithm to work with 3D, in which case you will need to compute the __face__ normals instead of the __edge__ normals as we did for 2D.
+You may also choose to adapt the SAT algorithm to work with 3D, in which case you will need to compute the __face__ normals, instead of the __edge__ normals as we did for 2D.
 
-For more complex usecases, such as physics interactions, predictive collisions, ragdolls, I strongly recommend checking any of Box2D's [documentation](https://box2d.org/documentation/) or [publications](https://box2d.org/publications/)
+For more complex use-cases, such as physics interactions, predictive collision detection, ragdolls, I strongly recommend checking any of Box2D's [documentation](https://box2d.org/documentation/) or [publications](https://box2d.org/publications/)
