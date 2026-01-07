@@ -35,6 +35,45 @@ header {
   background-color: var(--dark-background);
 }
 
+#table-of-contents {
+  padding: 32px;
+  background-color: var(--dark-background);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  & div div {
+    display: inline-block;
+  }
+
+  & .h3 {
+    margin-left: 32px;
+    font-size: 16px;
+  }
+}
+
+.blog>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog>div>h1 {
+  order: -1;
+}
+
+body .blog .toc-title {
+  font-size: 28px;
+  margin-top: 0;
+  font-weight: bold;
+}
+
 .inner-header-container {
   display: flex;
   justify-content: space-between;
