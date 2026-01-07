@@ -452,3 +452,51 @@ b {
   font-size: 14px;
   margin-top: auto;
 }
+
+@media (max-width: 1350px) {
+  body {
+    --container-padding: 60px;
+  }
+
+  .hero {
+    padding: 100px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .project-content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 32px;
+    max-width: 600px;
+    margin: 48px auto 0;
+  }
+
+  .project-image {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .projects>.project:nth-child(3n) .project-content>*:first-child {
+    order: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  body {
+    --container-padding: 24px;
+  }
+
+  .blog h1 {
+    font-size: 32px;
+  }
+
+  .blog-link {
+    flex-direction: column;
+  }
+
+  .hero {
+    padding: 32px;
+  }
+}
