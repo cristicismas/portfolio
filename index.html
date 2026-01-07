@@ -16,17 +16,27 @@
 
             <div class='description'>
                 <span>Professional software developer with <b>7 years</b> of experience.</span>
-                <span>Experience in game, ui, tools and web development.</span>
-                <span><b>Dependeable</b> and <b>adaptable</b> developer with a passion for solving hard problems.</span>
+                <span>Experience in <b>web</b>, <b>ui</b>, <b>tools</b> and <b>game development</b>.</span>
+                <span><b>Dependable</b> and <b>adaptable</b> developer with a passion for solving hard problems.</span>
             </div>
 
             <div class='links'>
                 <div>
-                    <a href='#projects-title'>Projects</a>
+                    <a class='link' href='#blog-title'>
+                        <img src='./icons/blog.svg' width='18' />
+                        Blog</a>
                 </div>
 
                 <div>
-                    <a href='/blog'>Blog</a>
+                    <a class='link' href='#projects-title'>
+                        <img src='./icons/projects.svg' width='18' />
+                        Projects</a>
+                </div>
+
+                <div>
+                    <a class='link' href='https://github.com/cristicismas' target='_blank'>
+                        <img src='./icons/github.svg' width='18' />
+                        Github</a>
                 </div>
             </div>
 
@@ -34,22 +44,47 @@
         <div class='dots' id='dots'></div>
     </div>
 
-    <h2 class="projects-title" id='projects-title'>Projects</h2>
 
-    <div id='projects' class="projects">
+    <h2 class='section-title' id='blog-title'>Blog</h2>
+
+    <section class='blogs section' id='blogs'>
+        <div class="blog-entry">
+            <a class="blog-link" href='./blog/sat-collision-detection.html'>
+                <img class='blog-image' src='./images/SAT/aabb_rotated_projected.png' width='300' height='150' />
+
+                <div class='blog-info'>
+                    <h3 class='blog-title'>2D SAT collision detection in Odin</h3>
+
+                    <p class="blog-description">Surprisingly easy to implement <b>Separating Axis Theorem</b> collision
+                        detection algorithm written in odin. Collision detection that works for <b>2D</b> convex
+                        polygons with
+                        any number of vertices.
+                    </p>
+
+                    <div class="blog-date">06-01-2025</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+
+    <h2 class="section-title" id='projects-title'>Projects</h2>
+
+    <section id='projects' class="projects section">
         <div class='project'>
             <h3 class='project-title'>Paragon of time</h3>
 
             <div class='project-content'>
                 <div class='image-container'>
-                    <img class='project-image' src='https://placehold.co/600x400' width='600' height='400' />
+                    <img class='project-image' src='./images/Paragon-Image.png' width='600' height='400' />
                 </div>
 
                 <div>
                     <p class='project-description'>
                         A vampire surivor-like game I developed in 2025 with <b>Godot.</b>
                         <span class='spacer' /> It features
-                        unique player abilities and weapons, procedually generated props and tiles, many different
+                        unique <b>player abilities and weapons</b>, <b>procedually generated</b> props and tiles, many
+                        different
                         enemies
                         with various mechanics.
                         <span class='spacer' /> It's a fully <b>fledged game that I developed alone</b>, including all
@@ -58,9 +93,9 @@
                     </p>
 
                     <div class='project-link-container'>
-                        <a target='_blank' class='project-link'
+                        <a target='_blank' class='link'
                             href='https://store.steampowered.com/app/3600970/Paragon_Of_Time/'>
-                            <img src='./link.svg' width='18' />
+                            <img src='./icons/link.svg' width='18' />
                             Steam
                             link</a>
                     </div>
@@ -68,13 +103,15 @@
             </div>
         </div>
 
+        <div class="breaker"></div>
+
         <div class='project'>
             <h3 class='project-title'>GDScript LSP</h3>
 
             <div class='project-content'>
                 <div class='image-container'>
 
-                    <img class='project-image' src='https://placehold.co/600x400' width='600' height='400' />
+                    <img class='project-image' src='./images/GDScript-LSP.png' width='600' height='400' />
                 </div>
 
                 <div>
@@ -87,8 +124,8 @@
                         decided to write an LSP myself.
                     </p>
                     <div class='project-link-container'>
-                        <a target='_blank' class='project-link' href='https://github.com/cristicismas/gdscript-lsp'>
-                            <img src='./link.svg' width='18' />
+                        <a target='_blank' class='link' href='https://github.com/cristicismas/gdscript-lsp'>
+                            <img src='./icons/link.svg' width='18' />
                             Github
                             link</a>
                     </div>
@@ -96,12 +133,14 @@
             </div>
         </div>
 
+        <div class="breaker"></div>
+
         <div class='project'>
             <h3 class='project-title'>Command Vector</h3>
 
             <div class='project-content'>
                 <div class='image-container'>
-                    <img class='project-image' src='https://placehold.co/600x400' width='600' height='400' />
+                    <img class='project-image' src='./images/CommandVector.png' width='600' height='400' />
                 </div>
 
                 <div>
@@ -110,22 +149,16 @@
                         features such as formation-based abilities, a unique thrilling story, and proper real-time
                         action
                         where every split second counts.
-                        <span class='spacer' />Made using <b>raylib</b> and <b>Odin</b> with basically no
+                        <span class='spacer' />Made using <b>raylib</b> and <b>Odin</b> with no
                         other
                         dependencies.
                     </p>
-
-                    <div class='project-link-container'>
-                        <a class='project-link' href='/blog' target='_blank'>
-                            <img src='./link.svg' width='18' />
-                            Read Blog
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <div class="breaker"></div>
+    </section>
     <script src='./script.js'></script>
 </body>
 

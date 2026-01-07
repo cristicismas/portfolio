@@ -1,13 +1,19 @@
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("./font/LibreBaskerville.ttf") format("truetype");
+}
+
 body,
 html {
   margin: 0;
   padding: 0;
   max-width: 100%;
   overflow-x: hidden;
-  background-color: #0f172a;
+  --background: #161826;
   --container-width: 1300px;
   --color-default: #a1b5d1;
   --color-accent: #c0d8f9;
+  background-color: var(--background);
   color: var(--color-default);
 }
 
@@ -17,7 +23,22 @@ h3 {
   color: var(--color-accent);
 }
 
+pre {
+  display: inline;
+}
+
+.blog p {
+  display: inline-block;
+  margin-top: 16px;
+}
+
+.blog img {
+  max-width: 100%;
+  margin-top: 16px;
+}
+
 * {
+  font-family: "Libre Baskerville", 'Times New Roman', Times, serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -37,7 +58,7 @@ a {
 .hero {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 120px;
+  padding: 220px;
   display: flex;
   flex-direction: column;
 }
@@ -56,6 +77,7 @@ a {
 }
 
 .description {
+  line-height: 1.5;
   margin-top: 32px;
   display: flex;
   flex-direction: column;
@@ -70,9 +92,8 @@ b {
 .links {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   margin-top: 48px;
-  font-size: 22px;
 }
 
 .hero .links a {
@@ -84,7 +105,7 @@ b {
   }
 }
 
-.projects {
+.section {
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 90px 120px;
@@ -93,10 +114,14 @@ b {
   gap: 156px;
 }
 
-.projects-title {
-  padding: 0 120px;
+.section-title {
+  padding: 48px 120px 0;
   font-size: 56px;
   text-align: center;
+}
+
+.hero .link {
+  font-size: 22px;
 }
 
 .project-title {
@@ -105,8 +130,11 @@ b {
 }
 
 .project-image {
-  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+  vertical-align: top;
   height: auto;
+  max-width: 100%;
 }
 
 .project-content {
@@ -117,10 +145,11 @@ b {
 }
 
 .project-description {
-  font-size: 24px;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
-.projects>.project:nth-child(2n) .project-content>*:first-child {
+.projects>.project:nth-child(3n) .project-content>*:first-child {
   order: 2;
 }
 
@@ -128,7 +157,7 @@ b {
   margin-top: 32px;
 }
 
-.project-link {
+.link {
   font-size: 24px;
   position: relative;
 
@@ -137,7 +166,7 @@ b {
     position: absolute;
     bottom: -4px;
     left: 0;
-    width: 14px;
+    width: 16px;
     height: 2px;
     background-color: var(--color-accent);
     transition: width .2s;
@@ -164,11 +193,106 @@ b {
 
 
 .dot {
-  opacity: 0;
+  transform: rotate(45deg);
   width: 4px;
   height: 4px;
   background-color: var(--color-default);
   border-radius: 20px;
-  opacity: .1;
-  transition: all .05s;
+  opacity: .05;
+}
+
+.breaker {
+  position: relative;
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+  height: 2px;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 1px;
+    background-color: var(--color-default);
+    opacity: .7;
+    width: 60%;
+  }
+
+  &::before {
+    top: -5px;
+    left: 0;
+  }
+
+  &::after {
+    top: 5px;
+    right: 0;
+    left: auto;
+  }
+}
+
+.blog-link {
+  display: flex;
+  gap: 24px;
+  font-weight: 400;
+  padding: 32px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 40%;
+    border-top: 2px solid var(--color-default);
+    border-left: 2px solid var(--color-default);
+    opacity: .5;
+    transition: all .2s;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    height: 40%;
+    border-bottom: 2px solid var(--color-default);
+    border-right: 2px solid var(--color-default);
+    transition: all .2s;
+    opacity: .5;
+  }
+
+  &:hover {
+
+    &::before,
+    &::after {
+      border-color: var(--color-accent);
+      width: 40%;
+      height: 60%;
+      opacity: 1;
+    }
+  }
+}
+
+.blog-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.blog-title {
+  font-size: 20px;
+}
+
+.blog-description {
+  font-size: 16px;
+  color: var(--color-default);
+}
+
+.blog-date {
+  color: var(--color-default);
+  font-size: 14px;
+  margin-top: auto;
 }

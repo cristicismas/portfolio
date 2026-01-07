@@ -45,28 +45,15 @@ const convertValueToRange = (oldValue, oldMin, oldMax, newMin, newMax) => {
   }
 };
 
-// let testCount = 0;
-// const test = (expression, expected) => {
-//   if (expression === expected) {
-//     console.log(`Test ${testCount}: ${expression} === ${expected} - Passed`);
-//   } else {
-//     console.log(`Test ${testCount}: ${expression} !== ${expected} - Failed`);
-//   }
-//   testCount += 1;
-// };
-//
-// test(convertValueToRange(50, 0, 100, 0, 1), 0.5);
-// test(convertValueToRange(20, 0, 200, 1, 0), 0.9);
-
 const length2 = (x, y) => Math.pow(x, 2) + Math.pow(y, 2);
 const length = (x, y) => Math.sqrt(length2(x, y));
 
 const MIN_DISTANCE = 0;
 // large distance needed to have faster distance calculation without sqrt
-const MAX_OPACITY_DISTANCE = 390_000;
-const MAX_RADIUS_DISTANCE = 325_000;
+const MAX_SCALE_DISTANCE = 800_000;
+const MAX_RADIUS_DISTANCE = 525_000;
 
-updateDots = (mouse_x, mouse_y) => {
+const updateDots = (mouse_x = 999999, mouse_y = 999999) => {
   const hero = document.getElementById("hero").getBoundingClientRect();
   for (const d of dots) {
     const x = d.offsetLeft;
@@ -95,19 +82,24 @@ updateDots = (mouse_x, mouse_y) => {
       distance_len,
       MIN_DISTANCE,
       MAX_RADIUS_DISTANCE,
-      10,
-      1,
+      5,
+      0,
     );
     d.style.borderRadius = `${border_radius}px`;
 
-    const opacity = convertValueToRange(
-      distance_len,
+    screen_center_x = window.innerWidth / 2;
+    screen_center_y = window.innerHeight / 2;
+
+    let distance_to_center = length2(x - hero_center_x, y - hero_center_y);
+
+    const scale = convertValueToRange(
+      distance_to_center,
       MIN_DISTANCE,
-      MAX_OPACITY_DISTANCE,
-      0,
-      0.1,
+      MAX_SCALE_DISTANCE,
+      0.5,
+      3,
     );
-    d.style.opacity = opacity;
+    d.style.scale = scale;
   }
 };
 
@@ -120,10 +112,11 @@ const onMouseMove = (e) => {
 
 const init = () => {
   generateDots();
-  updateDots(99999, 99999);
+  updateDots();
 
   document.addEventListener("mousemove", onMouseMove);
-  window.addEventListener("resize", () => updateDots(99999, 99999));
+  document.addEventListener("scroll", updateDots);
+  window.addEventListener("resize", updateDots);
 };
 
 init();
