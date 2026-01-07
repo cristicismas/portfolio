@@ -21,11 +21,32 @@ html {
   overflow-x: hidden;
   --dark-background: #13141D;
   --background: #161826;
-  --container-width: 1300px;
+  --container-width: 1350px;
+  --container-padding: 120px;
   --color-default: #a1b5d1;
   --color-accent: #c0d8f9;
   background-color: var(--background);
   color: var(--color-default);
+}
+
+header {
+  width: 100%;
+  font-size: 24px;
+  background-color: var(--dark-background);
+}
+
+.inner-header-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 32px var(--container-padding);
+}
+
+.right-side {
+  display: flex;
+  gap: 36px;
 }
 
 .blog pre,
@@ -187,7 +208,7 @@ b {
 .section {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 90px 120px;
+  padding: 90px var(--container-padding);
   display: flex;
   flex-direction: column;
   gap: 156px;
@@ -223,9 +244,11 @@ b {
   gap: 48px;
 }
 
-.project-description {
-  font-size: 18px;
+.project-description,
+.project-description * {
+  font-size: 20px;
   line-height: 1.5;
+  font-family: "Google Sans", sans-serif;
 }
 
 .projects>.project:nth-child(3n) .project-content>*:first-child {
@@ -234,6 +257,11 @@ b {
 
 .project-link-container {
   margin-top: 32px;
+}
+
+.project-link-container .link {
+  font-size: 22px;
+  font-family: Google Sans, sans-serif;
 }
 
 .link {
@@ -361,8 +389,18 @@ b {
   gap: 12px;
 }
 
+.blog-info * {
+  font-family: 'Google Sans', sans-serif;
+  letter-spacing: 0.6px;
+  line-height: 1.2;
+}
+
 .blog-title {
   font-size: 20px;
+}
+
+.blog-entry-title {
+  margin-top: 0;
 }
 
 .blog-description {

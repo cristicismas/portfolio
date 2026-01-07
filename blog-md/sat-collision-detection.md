@@ -100,7 +100,7 @@ At this point the normal should also be normalized (set its magnitude to 1).
 
 ```
 normal = normalize(normal)
-projection_length == dot(vertex, normal)
+projection_length = dot(vertex, normal)
 ```
 
 > Please note that the dot product returns a scalar value (this could be a float or int in your coordinate system, it's simply a length), not a vector.
