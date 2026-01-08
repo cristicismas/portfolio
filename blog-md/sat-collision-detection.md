@@ -190,6 +190,7 @@ Explaining how to separate a concave polygon into convex polygons is beyond the 
 - For any shape with parallel edges, such as rectangles and rhombi, you can skip checking __half__ of the normals, since half of them will just be pointing in the opposite direction from the others, but this algorithm doesn't care about the direction of the axes.
 - If you need to check the collision between the same exact shape type, you can skip getting the normals of one of the shapes completely, you don't need to compute the projections on the same axes twice.
 - Depending on your use-case, you may choose to only check the collision of shapes that are close to each other, and discard the shapes that sit at large distances outright.
+- This algorithm is very easy to run on multiple threads with a lot of shapes, since you just need to generate pairs of shapes and split them up among the available threads.
 
 ## Additional resources
 

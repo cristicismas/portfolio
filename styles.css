@@ -190,6 +190,7 @@ a {
 }
 
 .heroContainer {
+  overflow: hidden;
   position: relative;
   min-height: 100lvh;
 }
@@ -327,8 +328,6 @@ b {
   padding: 40px;
   pointer-events: none;
   user-select: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 40px);
   gap: 30px;
   position: absolute;
   top: 0;
@@ -339,6 +338,7 @@ b {
 
 
 .dot {
+  position: absolute;
   transform: rotate(45deg);
   width: 4px;
   height: 4px;

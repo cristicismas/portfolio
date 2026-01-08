@@ -1,16 +1,29 @@
 const dots = [];
 
 const generateDots = () => {
-  const MAX_DOTS = 500;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const SPLIT_DISTANCE = 60;
+
+  const rows = Math.floor(height / SPLIT_DISTANCE);
+  const cols = Math.floor(width / SPLIT_DISTANCE);
+
+  const distance_between_dots = width / rows;
+  const padding = distance_between_dots / 2;
 
   const dots_container = document.getElementById("dots");
 
-  for (let i = 0; i < MAX_DOTS; i++) {
-    const dot = document.createElement("div");
-    dot.classList.add("dot");
-    dots.push(dot);
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      dot.style.top = `${padding + row * SPLIT_DISTANCE}px`;
+      dot.style.left = `${padding + col * SPLIT_DISTANCE}px`;
+      dots.push(dot);
 
-    dots_container.appendChild(dot);
+      dots_container.appendChild(dot);
+    }
   }
 };
 
@@ -103,6 +116,11 @@ const updateDots = (mouse_x = 999999, mouse_y = 999999) => {
   }
 };
 
+const deleteDots = () => {
+  const dots = document.getElementById("dots");
+  dots.innerHTML = "";
+};
+
 const onMouseMove = (e) => {
   const mouse_x = e.clientX;
   const mouse_y = e.clientY;
@@ -116,8 +134,11 @@ const init = () => {
     updateDots();
 
     document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("scroll", updateDots);
-    window.addEventListener("resize", updateDots);
+    window.addEventListener("resize", () => {
+      deleteDots();
+      generateDots();
+      updateDots();
+    });
   }
 };
 
