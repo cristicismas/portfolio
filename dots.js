@@ -108,13 +108,22 @@ const updateDots = (mouse_x = 999999, mouse_y = 999999) => {
     screen_center_x = window.innerWidth / 2;
     screen_center_y = window.innerHeight / 2;
 
-    let distance_to_center = length2(x - hero_center_x, y - hero_center_y);
+    const distance_to_center = length2(x - hero_center_x, y - hero_center_y);
+
+    const mouse_distance = length2(x - mouse_x, y - mouse_y);
+    const is_near_mouse = mouse_distance < 40_000 && mouse_distance > 9_000;
+
+    if (is_near_mouse) {
+      d.classList.add("enhanced");
+    } else {
+      d.classList.remove("enhanced");
+    }
 
     const scale = convertValueToRange(
       distance_to_center,
       MIN_DISTANCE,
       MAX_SCALE_DISTANCE,
-      0.5,
+      0,
       3,
     );
     d.style.scale = scale;
@@ -138,7 +147,10 @@ const init = () => {
     generateDots();
     updateDots();
 
-    document.addEventListener("mousemove", onMouseMove);
+    if (matchMedia("(pointer:fine)").matches) {
+      document.addEventListener("mousemove", onMouseMove);
+    }
+
     window.addEventListener("resize", () => {
       deleteDots();
       generateDots();

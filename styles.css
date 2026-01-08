@@ -336,8 +336,8 @@ b {
   height: 100%;
 }
 
-
 .dot {
+  transition: opacity .3s;
   position: absolute;
   transform: rotate(45deg);
   width: 4px;
@@ -345,6 +345,10 @@ b {
   background-color: var(--color-default);
   border-radius: 20px;
   opacity: .05;
+}
+
+.dot.enhanced {
+  opacity: .3;
 }
 
 .breaker {
