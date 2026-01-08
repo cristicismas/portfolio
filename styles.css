@@ -150,6 +150,7 @@ ul li:not(:last-child) {
 }
 
 pre {
+  overflow-x: auto;
   display: inline;
 }
 
@@ -534,6 +535,52 @@ body #contact * {
 }
 
 @media (max-width: 800px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .blog-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .blog-entry-title {
+    font-size: 20px;
+  }
+
+  .blog-description {
+    font-size: 16px;
+  }
+
+  .blog-date {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 20px;
+  }
+
+  .hero .link {
+    font-size: 18px;
+  }
+
+  .links {
+    gap: 22px;
+  }
+
+  .inner-header-container {
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+
+  .right-side {
+    gap: 14px;
+  }
+
+  header .link {
+    font-size: 18px;
+  }
+
   body {
     --container-padding: 24px;
   }
@@ -548,5 +595,55 @@ body #contact * {
 
   .hero {
     padding: 32px;
+  }
+
+  #contact #contact-title {
+    font-size: 22px;
+  }
+
+  #contact p {
+    font-size: 16px;
+  }
+
+  #contact .link {
+    font-size: 16px;
+  }
+
+  #contact br {
+    display: none;
+  }
+
+  .copyright {
+    font-size: 14px;
+  }
+
+  .section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .section-title {
+    padding-top: 0;
+    font-size: 28px;
+  }
+
+  .blog>div>h1 {
+    font-size: 28px;
+  }
+
+  body .blog .toc-title {
+    font-size: 22px;
+  }
+
+  .blog a {
+    font-size: 16px;
+  }
+
+  .blog h2 {
+    font-size: 20px;
+  }
+
+  .blog h3 {
+    font-size: 18px;
   }
 }
