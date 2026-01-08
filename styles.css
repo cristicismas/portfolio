@@ -646,4 +646,12 @@ body #contact * {
   .blog h3 {
     font-size: 18px;
   }
+
+  .project-title {
+    font-size: 26px;
+  }
+
+  .section {
+    gap: 48px;
+  }
 }
