@@ -6,8 +6,13 @@ const generateDots = () => {
 
   const SPLIT_DISTANCE = 60;
 
-  const rows = Math.floor(height / SPLIT_DISTANCE);
-  const cols = Math.floor(width / SPLIT_DISTANCE);
+  let rows = Math.floor(height / SPLIT_DISTANCE);
+  let cols = Math.floor(width / SPLIT_DISTANCE);
+
+  if (width < 900) {
+    rows += 1;
+    cols += 1;
+  }
 
   const distance_between_dots = width / rows;
   const padding = distance_between_dots / 2;

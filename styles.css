@@ -453,6 +453,50 @@ b {
   margin-top: auto;
 }
 
+.copyright {
+  opacity: .7;
+  text-align: center;
+  padding: 16px 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body #contact * {
+  font-family: Google Sans, Arial, Helvetica, sans-serif;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+#contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-direction: column;
+  padding: 64px 32px;
+  background-color: var(--dark-background);
+}
+
+#contact #contact-title {
+  margin-top: 0;
+  font-size: 32px;
+}
+
+#contact .link {
+  margin-left: 4px;
+  display: inline-block;
+
+  &::after {
+    bottom: -0px;
+  }
+}
+
+#contact .link img {
+  position: relative;
+  top: 3px;
+}
+
+
 @media (max-width: 1350px) {
   body {
     --container-padding: 60px;
