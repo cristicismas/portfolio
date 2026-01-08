@@ -443,18 +443,20 @@ b {
 }
 
 .blog-entry-title {
+  font-size: 24px;
   margin-top: 0;
 }
 
 .blog-description {
-  font-size: 16px;
+  font-size: 20px;
   color: var(--color-default);
 }
 
 .blog-date {
   color: var(--color-default);
-  font-size: 14px;
+  font-size: 16px;
   margin-top: auto;
+  padding-top: 24px;
 }
 
 .copyright {
