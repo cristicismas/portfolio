@@ -19,7 +19,7 @@ const generateUrl = (path) => {
   return `
   <url>
     <loc>https://cristi.webcc.uk/${path}</loc>
-    <lastmod>${getFileModifiedDateFormatted(`../${path}`)}</lastmod>
+    <lastmod>${getFileModifiedDateFormatted(`./${path}`)}</lastmod>
   </url>`;
 };
 
@@ -39,14 +39,9 @@ const getAllFilesSync = (dirPath, arrayOfFiles = []) => {
   return arrayOfFiles;
 };
 
-const blog_paths = getAllFilesSync("../blog");
+const blog_paths = getAllFilesSync("./blog");
 
-const all_paths = [
-  "index.html",
-  "blog.html",
-  "projects.html",
-  ...blog_paths.map((path) => path.slice(3)),
-];
+const all_paths = ["index.html", "blog.html", "projects.html", ...blog_paths];
 
 const xml = `
 <?xml version="1.0" encoding="UTF-8"?>
