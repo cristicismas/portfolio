@@ -21,10 +21,16 @@ cp -r robots.txt out
 cp -r sitemap.xml out
 
 
-echo "Successfully built out/ directory."
+echo "Successfully built out/ directory"
 
 echo "Syncing to remote server..."
 
 rsync -avz -e "ssh -p 22 -i ~/.ssh/my_server" --exclude=.git/ ./out/* cristi-server@webcc.uk:/home/cristi/docker/swag/portfolio
 
 echo "Successfully to remote server"
+
+echo "Rebuilding image..."
+
+ssh cristi-server@webcc.uk 'cd /home/cristi/docker/swag && docker-compose up portfolio -d --build'
+
+echo "Sucessfully rebuilt the portfolio image"
