@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 
-<html>
+<html lang='en'>
 
 <head>
     <title>Cristi Cismas | Projects</title>
 
+    <meta name="description" content="Cristi's most recent and relevant projects" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="preload" as="font" href="/font/LibreBaskerville.ttf" crossorigin>
+    <link rel="preload" as="font" href="/font/FiraCode.ttf" crossorigin>
+    <link rel="preload" as="font" href="/font/GoogleSans.ttf" crossorigin>
+
     <link rel='stylesheet' href='./styles.css' />
+
+    <style type="text/css">
+        body {
+            background: #161826;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,117 +29,123 @@
 
             <div class="right-side">
                 <a class='link' href="/blog.html">
-                    <img src='/icons/blog.svg' width='18' />
+                    <img src='/icons/blog.svg' width='18' height='18' alt='' />
                     Blog</a>
                 <a class='link' href="/projects.html">
-                    <img src='/icons/projects.svg' width='18' />
+                    <img src='/icons/projects.svg' width='18' height='18' alt='' />
                     Projects</a>
             </div>
         </div>
     </header>
 
-    <h2 class="section-title" id='projects-title'>Projects</h2>
+    <main>
 
-    <section id='projects' class="projects section">
-        <div class='project'>
-            <h3 class='project-title'>Paragon of time</h3>
+        <h2 class="section-title" id='projects-title'>Projects</h2>
 
-            <div class='project-content'>
-                <div class='image-container'>
-                    <img class='project-image' src='./images/Paragon-Image.png' width='600' height='400' />
-                </div>
+        <section id='projects' class="projects section">
+            <div class='project'>
+                <h3 class='project-title'>Paragon of time</h3>
 
-                <div>
-                    <p class='project-description'>
-                        A vampire surivor-like game I developed in 2025 with <b>Godot.</b>
-                        <span class='spacer' /> It features
-                        unique <b>player abilities and weapons</b>, <b>procedually generated</b> props and tiles, many
-                        different
-                        enemies
-                        with various mechanics.
-                        <span class='spacer' /> It's a fully <b>fledged game that I developed alone</b>, including all
-                        the <b>programming</b>, <b>game design</b> and the <b>art</b>.
+                <div class='project-content'>
+                    <div class='image-container'>
+                        <img class='project-image' src='./images/Paragon-Image.png' width='600' height='400' />
+                    </div>
 
-                    </p>
+                    <div>
+                        <p class='project-description'>
+                            A vampire surivor-like game I developed in 2025 with <b>Godot.</b>
+                            <span class='spacer' /> It features
+                            unique <b>player abilities and weapons</b>, <b>procedually generated</b> props and tiles,
+                            many
+                            different
+                            enemies
+                            with various mechanics.
+                            <span class='spacer' /> It's a fully <b>fledged game that I developed alone</b>, including
+                            all
+                            the <b>programming</b>, <b>game design</b> and the <b>art</b>.
 
-                    <div class='project-link-container'>
-                        <a target='_blank' class='link'
-                            href='https://store.steampowered.com/app/3600970/Paragon_Of_Time/'>
-                            <img src='./icons/link.svg' width='18' />
-                            Steam
-                            link</a>
+                        </p>
+
+                        <div class='project-link-container'>
+                            <a target='_blank' class='link'
+                                href='https://store.steampowered.com/app/3600970/Paragon_Of_Time/'>
+                                <img src='./icons/link.svg' width='18' height='18' alt='' />
+                                Steam
+                                link</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="breaker"></div>
+            <div class="breaker"></div>
 
-        <div class='project'>
-            <h3 class='project-title'>GDScript LSP</h3>
+            <div class='project'>
+                <h3 class='project-title'>GDScript LSP</h3>
 
-            <div class='project-content'>
-                <div class='image-container'>
+                <div class='project-content'>
+                    <div class='image-container'>
 
-                    <img class='project-image' src='./images/GDScript-LSP.png' width='600' height='400' />
-                </div>
+                        <img class='project-image' src='./images/GDScript-LSP.png' width='600' height='400' alt='' />
+                    </div>
 
-                <div>
-                    <p class='project-description'>
-                        <b>Language Server Protocol</b> implementation for <b>neovim</b>, written in
-                        <b>Rust</b>, that provides basic autocomplete features.
-                        <span class='spacer' />This project was a personal necessity
-                        to me since the official LSP from <b>Godot</b> did not have good support for neovim at the time,
-                        so I
-                        decided to write an LSP myself.
-                    </p>
-                    <div class='project-link-container'>
-                        <a target='_blank' class='link' href='https://github.com/cristicismas/gdscript-lsp'>
-                            <img src='./icons/link.svg' width='18' />
-                            Github
-                            link</a>
+                    <div>
+                        <p class='project-description'>
+                            <b>Language Server Protocol</b> implementation for <b>neovim</b>, written in
+                            <b>Rust</b>, that provides basic autocomplete features.
+                            <span class='spacer' />This project was a personal necessity
+                            to me since the official LSP from <b>Godot</b> did not have good support for neovim at the
+                            time,
+                            so I
+                            decided to write an LSP myself.
+                        </p>
+                        <div class='project-link-container'>
+                            <a target='_blank' class='link' href='https://github.com/cristicismas/gdscript-lsp'>
+                                <img src='./icons/link.svg' width='18' height='18' alt='' />
+                                Github
+                                link</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="breaker"></div>
+            <div class="breaker"></div>
 
-        <div class='project'>
-            <h3 class='project-title'>Command Vector</h3>
+            <div class='project'>
+                <h3 class='project-title'>Command Vector</h3>
 
-            <div class='project-content'>
-                <div class='image-container'>
-                    <img class='project-image' src='./images/CommandVector.png' width='600' height='400' />
-                </div>
+                <div class='project-content'>
+                    <div class='image-container'>
+                        <img class='project-image' src='./images/CommandVector.png' width='600' height='400' alt='' />
+                    </div>
 
-                <div>
-                    <p class='project-description'>
-                        A work-in-progress <b>RTS game</b> in an outer space setting, with special
-                        features such as formation-based abilities, a unique thrilling story, and proper real-time
-                        action
-                        where every split second counts.
-                        <span class='spacer' />Made using <b>raylib</b> and <b>Odin</b> with no
-                        other
-                        dependencies.
-                    </p>
+                    <div>
+                        <p class='project-description'>
+                            A work-in-progress <b>RTS game</b> in an outer space setting, with special
+                            features such as formation-based abilities, a unique thrilling story, and proper real-time
+                            action
+                            where every split second counts.
+                            <span class='spacer' />Made using <b>raylib</b> and <b>Odin</b> with no
+                            other
+                            dependencies.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="breaker"></div>
-    </section>
+            <div class="breaker"></div>
+        </section>
 
-    <section id='contact'>
-        <h1 id='contact-title'>Contact Info</h1>
+        <section id='contact'>
+            <h1 id='contact-title'>Contact Info</h1>
 
-        <p>
-            If you have any questions, suggestions, or business inquiries,<br />please contact me at <a class='link'
-                href="mailto:cristicismas@pm.me">
-                <img src='/icons/mail.svg' width='18' />
-                cristicismas@pm.me</a>
-        </p>
-    </section>
+            <p>
+                If you have any questions, suggestions, or business inquiries,<br />please contact me at <a class='link'
+                    href="mailto:cristicismas@pm.me">
+                    <img src='/icons/mail.svg' width='18' height='18' alt='' />
+                    cristicismas@pm.me</a>
+            </p>
+        </section>
+    </main>
 
     <footer>
         <p class="copyright">&copy; 2026 Cristi Cismas</p>

@@ -1,16 +1,19 @@
 @font-face {
   font-family: "Libre Baskerville";
   src: url("./font/LibreBaskerville.ttf") format("truetype");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Fira Code";
   src: url("./font/FiraCode.ttf") format("truetype");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Google Sans";
   src: url("./font/GoogleSans.ttf") format("truetype");
+  font-display: swap;
 }
 
 body,

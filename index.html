@@ -1,58 +1,73 @@
 <!DOCTYPE html>
 
-<html>
+<html lang='en'>
 
 <head>
     <title>Cristi Cismas | Portfolio</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="ZTY5LnF73eHK3BMrh8B1Q19QLEL519LU2-vcZ69kSAs" />
+    <meta name="description"
+        content="Cristi's Portfolio - Professional developer with 7 years of experience in web, ui, tools, and game development." />
 
     <link rel='prefetch' href='/blog.html' />
     <link rel='prefetch' href='/projects.html' />
+
+    <link rel="preload" as="font" href="/font/LibreBaskerville.ttf" crossorigin>
+
     <link rel='stylesheet' href='./styles.css' />
+
+    <style type="text/css">
+        body {
+            background: #161826;
+        }
+    </style>
 </head>
 
 <body>
-    <div class='heroContainer'>
-        <div class='hero' id='hero'>
-            <h1 class='title'>Hi, I'm Cristi.</h1>
+    <main>
 
-            <div class='description'>
-                <span>Professional software developer with <b>7 years</b> of experience.</span>
-                <span>Experience in <b>web</b>, <b>ui</b>, <b>tools</b> and <b>game development</b>.</span>
-                <span><b>Dependable</b> and <b>adaptable</b> developer with a passion for solving hard problems.</span>
+        <div class='heroContainer'>
+            <div class='hero' id='hero'>
+                <h1 class='title'>Hi, I'm Cristi.</h1>
+
+                <div class='description'>
+                    <span>Professional software developer with <b>7 years</b> of experience.</span>
+                    <span>Experience in <b>web</b>, <b>ui</b>, <b>tools</b> and <b>game development</b>.</span>
+                    <span><b>Dependable</b> and <b>adaptable</b> developer with a passion for solving hard
+                        problems.</span>
+                </div>
+
+                <div class='links'>
+                    <div>
+                        <a class='link' href='/blog.html'>
+                            <img src='./icons/blog.svg' height='18' width='18' alt='' />
+                            Blog</a>
+                    </div>
+
+                    <div>
+                        <a class='link' href='/projects.html'>
+                            <img src='./icons/projects.svg' height='18' width='18' alt='' />
+                            Projects</a>
+                    </div>
+
+                    <div>
+                        <a class='link' href='https://github.com/cristicismas' target='_blank'>
+                            <img src='./icons/github.svg' height='18' width='18' alt='' />
+                            Github</a>
+                    </div>
+
+                    <div>
+                        <a class='link' href='mailto:cristicismas@pm.me'>
+                            <img src='./icons/mail.svg' height='18' width='18' alt='' />
+                            Contact me</a>
+                    </div>
+                </div>
+
             </div>
-
-            <div class='links'>
-                <div>
-                    <a class='link' href='/blog.html'>
-                        <img src='./icons/blog.svg' width='18' />
-                        Blog</a>
-                </div>
-
-                <div>
-                    <a class='link' href='/projects.html'>
-                        <img src='./icons/projects.svg' width='18' />
-                        Projects</a>
-                </div>
-
-                <div>
-                    <a class='link' href='https://github.com/cristicismas' target='_blank'>
-                        <img src='./icons/github.svg' width='18' />
-                        Github</a>
-                </div>
-
-                <div>
-                    <a class='link' href='mailto:cristicismas@pm.me'>
-                        <img src='./icons/mail.svg' width='18' />
-                        Contact me</a>
-                </div>
-            </div>
-
+            <div class='dots' id='dots'></div>
         </div>
-        <div class='dots' id='dots'></div>
-    </div>
+    </main>
 
     <script src='./dots.js'></script>
 </body>

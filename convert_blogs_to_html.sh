@@ -42,5 +42,11 @@ find blog-md/ -maxdepth 3 -type f -name "*" | while read -r filename; do
     # Write to the output path
     echo "${final_output}" > $file_out_path
     echo "Converted $filename to $file_out_path"
+
+    echo "Adding meta tags..."
+
+    ./generate_blog_meta_tags.js
+
+    echo "Generated meta tags."
 done
 
