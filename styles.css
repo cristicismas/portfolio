@@ -177,6 +177,8 @@ pre {
 
 .blog img {
   max-width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
   margin-top: 16px;
 }
 
