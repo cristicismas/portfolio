@@ -28,7 +28,7 @@ const buildTableOfContentsStructure = () => {
       const index = structure.findIndex((elem) => elem.id === previousH2.id);
 
       if (index) {
-        h3.id = h3.textContent.trim().replaceAll(" ", "-");
+        h3.id = h3.textContent.trim().replaceAll(" ", "-").replaceAll("'", "");
         structure[index].children.push({
           id: h3.id,
           title: h3.textContent.trim(),
@@ -42,6 +42,7 @@ const buildTableOfContentsStructure = () => {
 
 const init = () => {
   const structure = buildTableOfContentsStructure();
+  console.log(structure);
 
   const TOC = document.getElementById("table-of-contents");
 
