@@ -16,7 +16,7 @@ The algorithm itself is simple to understand, all you have to do is compare the 
 
 ![AABB Collision example with no collision between two rectangles.](../images/SAT/aabb_no_collision_simple.png)
 
-As you can easily see with your human eyes, there is no collision between the two rectangles in this case. On a computer program, let's check the y axis first, according to the logic from above.
+As you can easily see, there is no collision between the two rectangles in this case. On a computer program, let's check the y axis first, according to the logic from above.
 
 To do this we will need to first find the highest and lowest points of both objects. Do this by checking the y position of all points. Once you have found the 2 points for each object, we should look at their projections onto the y axis (you don't need to project anything in code for the AABB algorithm, I'm just using this illustration to show what happens).
 
