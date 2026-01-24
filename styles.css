@@ -482,7 +482,7 @@ body #contact * {
   font-family: Inter, Arial, Helvetica, sans-serif;
   text-align: center;
   line-height: 1.5;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #contact {
@@ -491,13 +491,13 @@ body #contact * {
   align-items: center;
   gap: 16px;
   flex-direction: column;
-  padding: 64px 32px;
+  padding: 24px 32px 32px;
   background-color: var(--dark-background);
 }
 
 #contact #contact-title {
   margin-top: 0;
-  font-size: 32px;
+  font-size: 22px;
 }
 
 #contact .link {
