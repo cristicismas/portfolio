@@ -666,3 +666,26 @@ body #contact * {
     gap: 48px;
   }
 }
+
+@media (min-width: 2000px) and (min-height: 2000px) {
+  .hero {
+    padding-top: 30vh;
+  }
+
+  .hero .title {
+    font-size: 64px;
+  }
+
+  .hero .description {
+    font-size: 28px;
+  }
+
+  .hero .links a {
+    font-size: 28px;
+  }
+
+  .hero .links img {
+    min-height: 24px;
+    min-width: 24px;
+  }
+}
