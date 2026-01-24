@@ -185,7 +185,7 @@ If neither __B1__, nor __B2__ collide with __A__, there is no collision between 
 
 Explaining how to separate a concave polygon into convex polygons is beyond the scope of this article. If you need it, you should look into __convex decomposition__.
 
-### Some possible optimizations
+## Some possible optimizations
 
 - For any shape with parallel edges, such as rectangles and rhombi, you can skip checking __half__ of the normals, since half of them will just be pointing in the opposite direction from the others, but this algorithm doesn't care about the direction of the axes.
 - If you need to check the collision between the same exact shape type, you can skip getting the normals of one of the shapes completely, you don't need to compute the projections on the same axes twice.
@@ -194,7 +194,7 @@ Explaining how to separate a concave polygon into convex polygons is beyond the 
 
 ## Additional resources
 
-If you have found the explanations in this article to be confusing, you may have better luck with these youtube videos:
+If you need more visual examples to understand the algorithm, you may have better luck with these youtube videos:
 
 - [How 2D Game Collision Works (Separating Axis Theorem)](https://www.youtube.com/watch?v=dn0hUgsok9M)
 - [Collision Detection with SAT (Math for Game Developers)](https://www.youtube.com/watch?v=-EsWKT7Doww)
@@ -204,3 +204,8 @@ For 3D applications you may prefer to use the GJK (Gilbert-Johnson-Keerthi) algo
 You may also choose to adapt the SAT algorithm to work with 3D, in which case you will need to compute the __face__ normals, instead of the __edge__ normals as we did for 2D.
 
 For more complex use-cases, such as physics interactions, predictive collision detection, ragdolls, I strongly recommend checking any of Box2D's [documentation](https://box2d.org/documentation/) or [publications](https://box2d.org/publications/)
+
+## Thanks for reading!
+
+If this article helped you, feel free to share it with others! If you have any feedback, or something wasn't clear enough, I'd love to hear about it, so please send me an email at [cristicismas@pm.me](mailto:cristicismas@pm.me).
+
