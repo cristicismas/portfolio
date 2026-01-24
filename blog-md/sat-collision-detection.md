@@ -16,13 +16,13 @@ The algorithm itself is simple to understand, all you have to do is compare the 
 
 ![AABB Collision example with no collision between two rectangles.](../images/SAT/aabb_no_collision_simple.png)
 
-As you can easily see, there is no collision between the two rectangles in this case. On a computer program, let's check the y axis first, according to the logic from above.
+As you can see in the image, there is no collision between the two rectangles in this case. To make sure this is the case in a programmed application, let's check the y axis first, according to the logic from above.
 
-To do this we will need to first find the highest and lowest points of both objects. Do this by checking the y position of all points. Once you have found the 2 points for each object, we should look at their projections onto the y axis (you don't need to project anything in code for the AABB algorithm, I'm just using this illustration to show what happens).
+We will first need to first find the highest and lowest points of both objects. Do this by checking the y position of all points. Once you have found the 2 points for each object, we should look at their projections onto the y axis (you don't need to project anything in code for the AABB algorithm, I'm just using this illustration to show what happens).
 
 ![AABB collision example with the highest and lowest points projected on the y axis.](../images/SAT/aabb_no_collision_projected_y.png)
 
-As you can see, the two ranges intersect. That means that we have collision on the y axis. Now we need to check the x axis as well, as we can only be sure we have no collision when all axes have been checked. If we had no collision on the y axis, that would have meant that the algorithm is done and the two objects do not touch each other, so we could have exited early, to avoid any additional calculations. This early exit strategy will also later apply to the SAT algorithm.
+As you can see, the two ranges intersect. That means that we have collision on the y axis. Now we need to check the x axis as well, as we can only be sure that we have no collision, when we find __one__ axis that doesn't detect any collision. If we had no collision on the y axis, that would have meant that the algorithm is done and the two objects do not touch each other, so we could have exited early, to avoid any additional calculations. This early exit strategy will also later apply to the SAT algorithm.
 
 Now, onto the x axis. Do the same as before regarding the point selection, only this time take the left-most and right-most points of each object. If we project the points onto the x axis, this is what the projection would look like:
 
