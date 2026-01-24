@@ -43,12 +43,11 @@ const blog_paths = getAllFilesSync("./blog");
 
 const all_paths = ["index.html", "blog.html", "projects.html", ...blog_paths];
 
-const xml = `
-<?xml version="1.0" encoding="UTF-8"?>
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${all_paths.map((path) => generateUrl(path)).join("\n")}
 </urlset>`;
 
-fs.writeFileSync("../sitemap.xml", xml, "utf8");
+fs.writeFileSync("./sitemap.xml", xml, "utf8");
 
 console.log("Generated sitemap for paths: ", all_paths);
