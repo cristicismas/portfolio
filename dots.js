@@ -4,10 +4,12 @@ const generateDots = () => {
   const width = window.innerWidth;
   const height = window.innerHeight;
 
-  const SPLIT_DISTANCE = 60;
+  const SPLIT_DISTANCE = width < 2200 ? 60 : 120;
+  const MAX_ROWS = 50;
+  const MAX_COLS = 50;
 
-  let rows = Math.floor(height / SPLIT_DISTANCE);
-  let cols = Math.floor(width / SPLIT_DISTANCE);
+  let rows = Math.min(Math.floor(height / SPLIT_DISTANCE), MAX_ROWS);
+  let cols = Math.min(Math.floor(width / SPLIT_DISTANCE), MAX_COLS);
 
   if (width < 900) {
     rows += 1;
@@ -108,10 +110,13 @@ const updateDots = (mouse_x = 999999, mouse_y = 999999) => {
     screen_center_x = window.innerWidth / 2;
     screen_center_y = window.innerHeight / 2;
 
+    const ENHANCED_MAX_DISTANCE = window.innerWidth < 2_200 ? 40_000 : 90_000;
+
     const distance_to_center = length2(x - hero_center_x, y - hero_center_y);
 
     const mouse_distance = length2(x - mouse_x, y - mouse_y);
-    const is_near_mouse = mouse_distance < 40_000 && mouse_distance > 9_000;
+    const is_near_mouse =
+      mouse_distance < ENHANCED_MAX_DISTANCE && mouse_distance > 9_000;
 
     if (is_near_mouse) {
       d.classList.add("enhanced");
