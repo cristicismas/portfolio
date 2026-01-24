@@ -26,7 +26,7 @@ html {
   --background: #161826;
   --container-width: 1350px;
   --container-padding: 120px;
-  --color-default: #a1b5d1;
+  --color-default: #afc1de;
   --color-accent: #c0d8f9;
   background-color: var(--background);
   color: var(--color-default);
