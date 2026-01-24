@@ -188,6 +188,14 @@ pre {
   padding: 0;
 }
 
+.hero .links img {
+  margin-right: 8px;
+}
+
+.hero .links * {
+  letter-spacing: .3px;
+}
+
 a {
   color: var(--color-accent);
   text-decoration: none;
@@ -467,7 +475,7 @@ b {
   opacity: .7;
   text-align: center;
   padding: 16px 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
 body #contact * {
