@@ -71,6 +71,10 @@ header {
   order: -1;
 }
 
+.blog>div {
+  position: relative;
+}
+
 body .blog .toc-title {
   font-size: 28px;
   margin-top: 0;
@@ -514,8 +518,45 @@ body #contact * {
   top: 3px;
 }
 
+#scroll-up-button {
+  position: fixed;
+  right: 30px;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  color: var(--color-accent);
+  cursor: pointer;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity .2s;
+}
+
+#scroll-up-button.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#scroll-up-button.show {
+  opacity: .8;
+  pointer-events: all;
+
+  &:hover {
+    opacity: 1;
+  }
+}
 
 @media (max-width: 1350px) {
+
+  #scroll-up-button,
+  #scroll-up-button.show {
+    display: none;
+  }
+
   body {
     --container-padding: 60px;
   }
@@ -526,6 +567,12 @@ body #contact * {
 }
 
 @media (max-width: 1050px) {
+
+  #scroll-up-button,
+  #scroll-up-button.show {
+    display: none;
+  }
+
   .project-content {
     display: flex;
     flex-direction: column;

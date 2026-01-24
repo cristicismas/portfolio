@@ -42,7 +42,6 @@ const buildTableOfContentsStructure = () => {
 
 const init = () => {
   const structure = buildTableOfContentsStructure();
-  console.log(structure);
 
   const TOC = document.getElementById("table-of-contents");
 

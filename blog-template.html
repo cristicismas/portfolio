@@ -45,7 +45,11 @@
                 <div id='table-of-contents'>
                     <p class='toc-title'>Table of contents</p>
                 </div>
+
                 {{ dynamic_html }}
+
+                <button type='button' id="scroll-up-button"><img src='/icons/up_arrow.svg' width='50'
+                        height='50' /></button>
             </div>
         </section>
     </main>
@@ -71,6 +75,7 @@
     </footer>
 
     <script src='/table_of_contents.js'></script>
+    <script defer async src='/scroll_up_button.js'></script>
 </body>
 
 </html>
