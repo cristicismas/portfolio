@@ -4,7 +4,7 @@ const generateDots = () => {
   const width = window.innerWidth;
   const height = window.innerHeight;
 
-  const SPLIT_DISTANCE = width < 2200 ? 60 : 120;
+  const SPLIT_DISTANCE = width < 2600 ? 60 : 120;
   const MAX_ROWS = 50;
   const MAX_COLS = 50;
 
