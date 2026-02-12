@@ -16,6 +16,7 @@ cp -r ./*.html out
 cp -r ./*.js out
 cp -r ./*.css out
 cp -r Dockerfile out
+cp -r favicon.ico out
 
 cp -r robots.txt out
 cp -r sitemap.xml out
