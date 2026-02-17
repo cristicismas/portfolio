@@ -32,6 +32,6 @@ echo "Successfully to remote server"
 
 echo "Rebuilding image..."
 
-ssh cristi-server@webcc.uk 'cd /home/cristi/docker/swag && docker-compose up portfolio -d --build'
+ssh cristi-server@webcc.uk 'cd /home/cristi/docker/swag && docker-compose up portfolio -d --build --remove-orphans'
 
 echo "Sucessfully rebuilt the portfolio image"
