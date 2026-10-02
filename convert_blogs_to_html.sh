@@ -32,6 +32,9 @@ find blog-md/ -maxdepth 3 -type f -name "*" | while read -r filename; do
     # Convert the markdown file to html and output it into this variable
     converted_html=$(./md_to_html $filename --inline)
 
+    # Replace bare <code> tags with <code class="language-odin">
+    # Uses a negative-ish lookahead via Perl since bash/sed regex lacks lookaheads
+    converted_html=$(printf '%s' "$converted_html" | perl -0pe 's/<code(?![^>]*\bclass=)/<code class="language-odin"/g')
 
     # Escape only the & character in the converted_html
     escaped_html=$(escape_for_replacement "$converted_html")
@@ -49,4 +52,3 @@ find blog-md/ -maxdepth 3 -type f -name "*" | while read -r filename; do
 
     echo "Generated meta tags."
 done
-

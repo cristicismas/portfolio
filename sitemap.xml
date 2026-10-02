@@ -8,7 +8,7 @@
 
   <url>
     <loc>https://cristi.webcc.uk/blog.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-10-02</lastmod>
   </url>
 
   <url>
@@ -18,6 +18,11 @@
 
   <url>
     <loc>https://cristi.webcc.uk/blog/sat-collision-detection.html</loc>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+
+  <url>
+    <loc>https://cristi.webcc.uk/blog/variable-transitions-odin.html</loc>
+    <lastmod>2026-10-02</lastmod>
   </url>
 </urlset>

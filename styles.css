@@ -96,7 +96,8 @@ body .blog .toc-title {
 }
 
 .blog pre,
-.blog code {
+.blog code,
+.blog code * {
   font-family: "Fira Code", 'Courier New', Courier, monospace;
 }
 
@@ -260,6 +261,10 @@ b {
   &:hover {
     color: var(--color-accent);
   }
+}
+
+#blogs {
+  gap: 64px;
 }
 
 .section {
