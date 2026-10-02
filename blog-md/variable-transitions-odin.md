@@ -4,7 +4,7 @@
 
 In this article I will talk about how to write a simple transitions system for variables, that you can use to transition the value of a variable over a certain duration of time, either linearly or using an easing function.
 
-If you'd rather just see the code, you can find the code samples of different implementations on my [https://github.com/cristicismas/transitions-demo](github repo).
+If you'd rather just see the code, you can find the code samples of different implementations on my [github repo](https://github.com/cristicismas/transitions-demo).
 
 At the end you will be able to create transitions easily using a simple api:
 
@@ -60,23 +60,23 @@ main :: proc() {
 
 ## Adding the simplest transition logic
 
-Now that we have something on the screen, what we need for our transitions API is 4 things. In the article it may seem like we have a lot of code, but you will notice that most of it is comments that explain each concept, and the amount of actual logic is pretty small.
+Now that we have something on the screen, we can start working on our transition system. In the article it may seem like we have a lot of code, but you will notice that most of it is comments that explain each concept, and the amount of actual logic is pretty small.
 
-1. A Transition struct. We will create this whenever we want to start a new transition. For now we will only use f32 values in our struct, but later we can make it more generic.
+- A Transition struct. We will create this whenever we want to start a new transition. For now we will only use f32 values in our struct, but later we can make it more generic.
 
 ```
 Transition :: struct {
-    // The initial value that the transition will start from. You can pass the current value of the variable, or another value entirely.
+	// The initial value that the transition will start from. You can pass the current value of the variable, or another value entirely.
 	initial:       f32,
-    // The final value that our variable will reach at the end of the transition.
+	// The final value that our variable will reach at the end of the transition.
 	final:         f32,
-    // The duration of the transition, passed in seconds
+	// The duration of the transition, passed in seconds
 	time:          f32,
-    // Here we can use whatever we define in the struct below. We later match on these using Odin's math/ease functions as the interpolator for non-linear easings.
+	// Here we can use whatever we define in the struct below. We later match on these using Odin's math/ease functions as the interpolator for non-linear easings.
 	easing:        Transition_Easing,
-    // This is needed for the Handle_Map to work properly. You should not pass this when creating the Transition. It is however a member of this struct to avoid creating another one just for the sake of avoiding a few extra members.
+	// This is needed for the Handle_Map to work properly. You should not pass this when creating the Transition. It is however a member of this struct to avoid creating another one just for the sake of avoiding a few extra members.
 	handle:        Transition_Id,
-    // These are used for the internal logic only, which is why they are underscored. They should not be passed when creating the transition.
+	// These are used for the internal logic only, which is why they are underscored. They should not be passed when creating the transition.
 	_data_pointer: ^f32,
 	_time_passed:  f32,
 }
@@ -88,7 +88,7 @@ Transition_Easing :: enum {
 }
 ```
 
-2. A place to keep our transitions. This can either be in some custom structure that you have, or you could just keep them as a global variable, since we aren't going to multithread this code anyway. I'm going to store the transitions in a handle map since that will simplify things later. If you don't know what a Handle Map is, you can read [Karl's article](https://zylinski.se/posts/handle-based-maps-three-implementations/) on the topic, or simply think of it as an array that can be addressed as an ID instead of an index for now.
+- A place to keep our transitions. This can either be in some custom structure that you have, or you could just keep them as a global variable, since we aren't going to multithread this code anyway. I'm going to store the transitions in a handle map since that will simplify things later. If you don't know what a Handle Map is, you can read [Karl's article](https://zylinski.se/posts/handle-based-maps-three-implementations/) on the topic, or simply think of it as an array that can be addressed with an ID instead of an index for now.
 
 ```
 import hm "core:container/handle_map"
@@ -105,7 +105,8 @@ Transitions_Handle_Map :: hm.Static_Handle_Map(TRANSITIONS_MAP_CAP, Transition, 
 transitions: Transitions_Handle_Map
 ```
 
-3. A way to update our transitions. We simply loop over all the items in the handle map, and update the value to be a little closer to what we want.
+
+- A way to update our transitions. We simply loop over all the items in the handle map, and update the value to be a little closer to our final value on each frame.
 
 ```
 // Import linalg at the top of your file to use the lerp function, so we can interpolate our value
@@ -173,7 +174,7 @@ for !rl.WindowShouldClose() {
 }
 ```
 
-4. Finally, the procedure that starts our transition. Since all the heavy-lifting logic is done already, this is a very simple procedure.
+- Finally, the procedure that starts our transition. Since all the heavy-lifting logic is done already, this is a very simple procedure.
 
 ```
 start_transition :: proc(
@@ -212,7 +213,7 @@ start_transition :: proc(
 
 Without comments, all this code comes to just about over 100 lines of code, which gives us a nice api to transition any f32 value in our project (with custom easing types too!).
 
-Let's try it out to visualise if it really works. Change your main procedure to include _start_transition_ calls, and play around with the values and transition easing:
+Let's try it out to visualise if it really works. Change your main procedure to include _start\_transition_ calls, and play around with the values and transition easing:
 
 ```
 main :: proc() {
@@ -285,7 +286,7 @@ Transition :: struct {
 }
 ```
 
-Then we need to match on the `\_data\_pointer` in the `update_transition_value` proc, and handle the interpolation of each value type individually:
+Then we need to match on the _\_data\_pointer_ in the _update\_transition\_value_ proc, and handle the interpolation of each value type individually:
 
 ```
 update_transition_value :: proc(transition: ^Transition) {
@@ -305,8 +306,7 @@ update_transition_value :: proc(transition: ^Transition) {
 }
 ```
 
-And finally we update the start\_transition proc to set the initial value. We need to import _core:reflect_ to do this easily.
-Change the data\_pointer parameter type to Transition_Value_Pointer, and change the assignment to data_pointer^, we now need to set this value using _reflect.set_union_value_
+And finally we update the start\_transition proc to set the initial value. We need to import _core:reflect_ to do this easily. Change the data\_pointer parameter type to _Transition\_Value\_Pointer_, and change the assignment to data\_pointer^, we now need to set this value using _reflect.set\_union\_value_
 
 ```
 import "core:reflect"
@@ -335,7 +335,7 @@ start_transition :: proc(
 Making the transition code generic, also made it less robust and more prone to crashes. We have to add some safety checks so the program does not crash in a confusing way. Here are possible points of failure right now:
 
 1. If we pass different values to the initial and final fields of our struct, the program will crash.
-2. If we pass the value of data_pointer and the initial or final fields are not the same, the program will crash.
+2. If we pass different values to data\_pointer and the initial or final fields, the program will crash.
 
 
 The solution to the first problem is pretty simple, we just check if they are the same type:
@@ -388,7 +388,7 @@ compare_pointer_type_to_base_type :: proc(
 }
 ```
 
-Now let's use this in our start_transition proc:
+Now let's use this in our _start\_transition_ proc:
 
 ```
 start_transition :: proc(
@@ -456,7 +456,7 @@ As you can see, this is a very powerful and versatile implementation for handlin
 
 ## Reference
 
-This article was partly inspired by rxi's article: [https://rxi.github.io/a_simple_ui_animation_system.html](A Simple UI Animation System). I recommend reading this if you want more ideas about how to implement your own transitions / animation algorithm.
+This article was partly inspired by rxi's article: [A Simple UI Animation System](https://rxi.github.io/a_simple_ui_animation_system.html). I recommend reading this if you want more ideas about how to implement your own transitions / animation algorithm.
 
 ## Thanks for reading!
 

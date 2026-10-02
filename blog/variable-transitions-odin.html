@@ -81,7 +81,7 @@
                     <p class='toc-title'>Table of contents</p>
                 </div>
 
-                <h1> Variable transitions in Odin</h1><br /><h2> Introduction</h2><br /><p>In this article I will talk about how to write a simple transitions system for variables, that you can use to transition the value of a variable over a certain duration of time, either linearly or using an easing function.</p><br /><p>If you'd rather just see the code, you can find the code samples of different implementations on my <a href="github repo">https://github.com/cristicismas/transitions-demo</a>.</p><br /><p>At the end you will be able to create transitions easily using a simple api:</p><br /><pre><code class="language-odin">my_var: f32 = 0.0
+                <h1> Variable transitions in Odin</h1><br /><h2> Introduction</h2><br /><p>In this article I will talk about how to write a simple transitions system for variables, that you can use to transition the value of a variable over a certain duration of time, either linearly or using an easing function.</p><br /><p>If you'd rather just see the code, you can find the code samples of different implementations on my <a href="https://github.com/cristicismas/transitions-demo">github repo</a>.</p><br /><p>At the end you will be able to create transitions easily using a simple api:</p><br /><pre><code class="language-odin">my_var: f32 = 0.0
 
 // simple transition
 
@@ -121,7 +121,7 @@ main :: proc() {
 	rl.CloseWindow()
 }
 
-</code></pre><br /><br /><h2> Adding the simplest transition logic</h2><br /><p>Now that we have something on the screen, what we need for our transitions API is 4 things. In the article it may seem like we have a lot of code, but you will notice that most of it is comments that explain each concept, and the amount of actual logic is pretty small.</p><br /><ol><li>A Transition struct. We will create this whenever we want to start a new transition. For now we will only use f32 values in our struct, but later we can make it more generic.</li></ol><br /><pre><code class="language-odin">Transition :: struct {
+</code></pre><br /><br /><h2> Adding the simplest transition logic</h2><br /><p>Now that we have something on the screen, what we need for our transitions API is 4 things. In the article it may seem like we have a lot of code, but you will notice that most of it is comments that explain each concept, and the amount of actual logic is pretty small.</p><br /><ul><li>A Transition struct. We will create this whenever we want to start a new transition. For now we will only use f32 values in our struct, but later we can make it more generic.</li></ul><br /><pre><code class="language-odin">Transition :: struct {
     // The initial value that the transition will start from. You can pass the current value of the variable, or another value entirely.
 	initial:       f32,
     // The final value that our variable will reach at the end of the transition.
@@ -142,7 +142,7 @@ Transition_Easing :: enum {
 	Sine_In,
 	Sine_Out,
 }
-</code></pre><br /><br /><ol><li>A place to keep our transitions. This can either be in some custom structure that you have, or you could just keep them as a global variable, since we aren't going to multithread this code anyway. I'm going to store the transitions in a handle map since that will simplify things later. If you don't know what a Handle Map is, you can read <a href="https://zylinski.se/posts/handle-based-maps-three-implementations/">Karl's article</a> on the topic, or simply think of it as an array that can be addressed as an ID instead of an index for now.</li></ol><br /><pre><code class="language-odin">import hm "core:container/handle_map"
+</code></pre><br /><br /><ul><li>A place to keep our transitions. This can either be in some custom structure that you have, or you could just keep them as a global variable, since we aren't going to multithread this code anyway. I'm going to store the transitions in a handle map since that will simplify things later. If you don't know what a Handle Map is, you can read <a href="https://zylinski.se/posts/handle-based-maps-three-implementations/">Karl's article</a> on the topic, or simply think of it as an array that can be addressed as an ID instead of an index for now.</li></ul><br /><pre><code class="language-odin">import hm "core:container/handle_map"
 
 // This is the maximum amount of transitions we will have in our application.
 // That means we are allocating up-front the cost of the maximum amount of transitions.
@@ -154,7 +154,7 @@ Transitions_Handle_Map :: hm.Static_Handle_Map(TRANSITIONS_MAP_CAP, Transition, 
 
 // The transitions handle_map. Make sure you define this above the main procedure.
 transitions: Transitions_Handle_Map
-</code></pre><br /><br /><ol><li>A way to update our transitions. We simply loop over all the items in the handle map, and update the value to be a little closer to what we want.</li></ol><br /><pre><code class="language-odin">// Import linalg at the top of your file to use the lerp function, so we can interpolate our value
+</code></pre><br /><br /><ul><li>A way to update our transitions. We simply loop over all the items in the handle map, and update the value to be a little closer to what we want.</li></ul><br /><pre><code class="language-odin">// Import linalg at the top of your file to use the lerp function, so we can interpolate our value
 import "core:math/linalg"
 // Import ease package to we can have different math functions for our interpolator (sine-in, sine-out, etc.)
 import "core:math/ease"
@@ -212,7 +212,7 @@ update_transition_value :: proc(transition: ^Transition) {
     update_transitions(&transitions)
     ...
 }
-</code></pre><br /><br /><ol><li>Finally, the procedure that starts our transition. Since all the heavy-lifting logic is done already, this is a very simple procedure.</li></ol><br /><pre><code class="language-odin">start_transition :: proc(
+</code></pre><br /><br /><ul><li>Finally, the procedure that starts our transition. Since all the heavy-lifting logic is done already, this is a very simple procedure.</li></ul><br /><pre><code class="language-odin">start_transition :: proc(
 	data_pointer: ^f32,
 	transition: Transition,
 	// loc is just used to get better error messages out.
@@ -244,7 +244,7 @@ update_transition_value :: proc(transition: ^Transition) {
 
 	return handle
 }
-</code></pre><br /><br /><p>Without comments, all this code comes to just about over 100 lines of code, which gives us a nice api to transition any f32 value in our project (with custom easing types too!).</p><br /><p>Let's try it out to visualise if it really works. Change your main procedure to include <i>start</i>transition<i> calls, and play around with the values and transition easing:</p><br /><pre><code class="language-odin">main :: proc() {
+</code></pre><br /><br /><p>Without comments, all this code comes to just about over 100 lines of code, which gives us a nice api to transition any f32 value in our project (with custom easing types too!).</p><br /><p>Let's try it out to visualise if it really works. Change your main procedure to include <i>start_transition</i> calls, and play around with the values and transition easing:</p><br /><pre><code class="language-odin">main :: proc() {
 	rl.InitWindow(1280, 720, "Transitions Demo")
 
 	rl.SetTargetFPS(144)
@@ -268,7 +268,7 @@ update_transition_value :: proc(transition: ^Transition) {
 
 	rl.CloseWindow()
 }
-</code></pre><br /><br /><p>If you did everything correctly up until this point, you will see the size and position of our square will change according to the values we passed in the Transition struct.</p><br /><h2> Handling different value types</h2><br /><p>You may have noticed that we can only transition between f32 values, because that is how our initial and final members of the struct have been defined. However, we can update the function to handle (pretty-much) any type of value, including </i>vec2<i> like we have for our square's position and size. That means we won't have to transition each component of the vector manually, and we will be able to use the function like this:</p><br /><pre><code class="language-odin">pos: vec2 = {}
+</code></pre><br /><br /><p>If you did everything correctly up until this point, you will see the size and position of our square will change according to the values we passed in the Transition struct.</p><br /><h2> Handling different value types</h2><br /><p>You may have noticed that we can only transition between f32 values, because that is how our initial and final members of the struct have been defined. However, we can update the function to handle (pretty-much) any type of value, including <i>vec2</i> like we have for our square's position and size. That means we won't have to transition each component of the vector manually, and we will be able to use the function like this:</p><br /><pre><code class="language-odin">pos: vec2 = {}
 
 start_transition(
 	&pos,
@@ -279,7 +279,7 @@ start_transition(
 		easing = .Sine_In,
 	},
 )
-</code></pre><br /><br /><p>The first step here is to change the value of the </i>initial<i>, </i>final<i>, and </i>_data_pointer<i> members. We will add all the values we want to transition into 2 separate unions. For now let's add values for f32 and vec2:</p><br /><pre><code class="language-odin">Transition_Value :: union {
+</code></pre><br /><br /><p>The first step here is to change the value of the <i>initial</i>, <i>final</i>, and <i>_data_pointer</i> members. We will add all the values we want to transition into 2 separate unions. For now let's add values for f32 and vec2:</p><br /><pre><code class="language-odin">Transition_Value :: union {
 	f32,
 	vec2,
 }
@@ -298,7 +298,7 @@ Transition :: struct {
 	_data_pointer: Transition_Value_Pointer,
 	_time_passed:  f32,
 }
-</code></pre><br /><br /><p>Then we need to match on the <pre><code class="language-odin">_data_pointer</code></pre> in the <pre><code class="language-odin">update</i>transition<i>value</code></pre> proc, and handle the interpolation of each value type individually:</p><br /><pre><code class="language-odin">update_transition_value :: proc(transition: ^Transition) {
+</code></pre><br /><br /><p>Then we need to match on the <i>_data_pointer</i> in the <i>update_transition_value</i> proc, and handle the interpolation of each value type individually:</p><br /><pre><code class="language-odin">update_transition_value :: proc(transition: ^Transition) {
 	...
 	initial := transition.initial
 	final := transition.final
@@ -313,7 +313,7 @@ Transition :: struct {
 		v^ = linalg.lerp(initial.(vec2), final.(vec2), interpolator)
 	}
 }
-</code></pre><br /><br /><p>And finally we update the start_transition proc to set the initial value. We need to import </i>core:reflect<i> to do this easily.<br />Change the data_pointer parameter type to Transition</i>Value<i>Pointer, and change the assignment to data</i>pointer^, we now need to set this value using <i>reflect.set</i>union<i>value</i></p><br /><pre><code class="language-odin">import "core:reflect"
+</code></pre><br /><br /><p>And finally we update the start_transition proc to set the initial value. We need to import <i>core:reflect</i> to do this easily. Change the data_pointer parameter type to <i>Transition_Value_Pointer</i>, and change the assignment to data_pointer^, we now need to set this value using <i>reflect.set_union_value</i></p><br /><pre><code class="language-odin">import "core:reflect"
 
 ...
 
@@ -334,7 +334,7 @@ start_transition :: proc(
 
 	...
 }
-</code></pre><br /><br /><p>Making the transition code generic, also made it less robust and more prone to crashes. We have to add some safety checks so the program does not crash in a confusing way. Here are possible points of failure right now:</p><br /><ol><li>If we pass different values to the initial and final fields of our struct, the program will crash.</li><li>If we pass the value of data<i>pointer and the initial or final fields are not the same, the program will crash.</li></ol><br /><br /><p>The solution to the first problem is pretty simple, we just check if they are the same type:</p><br /><pre><code class="language-odin">start_transition :: proc(
+</code></pre><br /><br /><p>Making the transition code generic, also made it less robust and more prone to crashes. We have to add some safety checks so the program does not crash in a confusing way. Here are possible points of failure right now:</p><br /><ol><li>If we pass different values to the initial and final fields of our struct, the program will crash.</li><li>If we pass the value of data_pointer and the initial or final fields are not the same, the program will crash.</li></ol><br /><br /><p>The solution to the first problem is pretty simple, we just check if they are the same type:</p><br /><pre><code class="language-odin">start_transition :: proc(
 	data_pointer: Transition_Value_Pointer,
 	transition: Transition,
 	// loc is just used to get better error messages out.
@@ -374,7 +374,7 @@ compare_pointer_type_to_base_type :: proc(
 
 	return equal
 }
-</code></pre><br /><br /><p>Now let's use this in our start</i>transition proc:</p><br /><pre><code class="language-odin">start_transition :: proc(
+</code></pre><br /><br /><p>Now let's use this in our <i>start_transition</i> proc:</p><br /><pre><code class="language-odin">start_transition :: proc(
 	data_pointer: Transition_Value_Pointer,
 	transition: Transition,
 	// loc is just used to get better error messages out.
@@ -428,7 +428,7 @@ compare_pointer_type_to_base_type :: proc(
 
 	rl.CloseWindow()
 }
-</code></pre><br /><br /><p>As you can see, this is a very powerful and versatile implementation for handling transitions in your application / game code. You may take this further by making sequences of transitions chained together to have a full blown animation system! However, that is beyond the scope of this article.</p><br /><h2> Reference</h2><br /><p>This article was partly inspired by rxi's <a href="article">https://rxi.github.io/a_simple_ui_animation_system.html</a> A Simple UI Animation System. I recommend reading this if you want more ideas about how to implement your own transitions / animation algorithm.</p><br /><h2> Thanks for reading!</h2><br /><p>If this article helped you, feel free to share it with others! If you have any feedback, or something wasn't clear enough, I'd love to hear about it, so please send me an email at cristicismas@pm.me.</p>
+</code></pre><br /><br /><p>As you can see, this is a very powerful and versatile implementation for handling transitions in your application / game code. You may take this further by making sequences of transitions chained together to have a full blown animation system! However, that is beyond the scope of this article.</p><br /><h2> Reference</h2><br /><p>This article was partly inspired by rxi's article: <a href="https://rxi.github.io/a_simple_ui_animation_system.html">A Simple UI Animation System</a>. I recommend reading this if you want more ideas about how to implement your own transitions / animation algorithm.</p><br /><h2> Thanks for reading!</h2><br /><p>If this article helped you, feel free to share it with others! If you have any feedback, or something wasn't clear enough, I'd love to hear about it, so please send me an email at cristicismas@pm.me.</p>
 
                 <button type='button' id="scroll-up-button"><img src='/icons/up_arrow.svg' width='50'
                         height='50' /></button>
