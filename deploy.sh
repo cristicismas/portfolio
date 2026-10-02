@@ -8,6 +8,7 @@ mkdir -p out
 
 rm -r out/*
 
+cp -r lib out
 cp -r blog out
 cp -r font out
 cp -r icons out
