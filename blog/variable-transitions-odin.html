@@ -83,18 +83,7 @@
 
                 <h1> Variable transitions in Odin</h1><br /><h2> Introduction</h2><br /><p>In this article I will talk about how to write a simple transitions system for variables, that you can use to transition the value of a variable over a certain duration of time, either linearly or using an easing function.</p><br /><p>If you'd rather just see the code, you can find the code samples of different implementations on my <a href="https://github.com/cristicismas/transitions-demo">github repo</a>.</p><br /><p>At the end you will be able to create transitions easily using a simple api:</p><br /><pre><code class="language-odin">my_var: f32 = 0.0
 
-// simple transition
-
 start_transition(&my_var, Transition{initial = 0.0, final = 1.0, time = 2.0, easing = .Sine_In})
-
-// sequence of transitions
-
-sequence_id := create_transition_sequence(&my_var)
-sequence := get_sequence(sequence_id)
-
-push_transition(sequence, Transition{ initial = 0.0, final = 1.0, time = 1.0, easing = .Sine_In })
-push_transition(sequence, Transition{ initial = 1.0, final = 5.0, time = 1.0, easing = .Linear })
-push_transition(sequence, Transition{ initial = 5.0, final = 0.0, time = 1.0, easing = .Sine_Out })
 </code></pre><br /><br /><h2> Starting point</h2><br /><p>Let's first get some stuff on the screen so we can visualise the transitions. I will write some simple <i>raylib</i> code, but feel free to use any rendering library you want, it will not change the core of our transition code.</p><br /><pre><code class="language-odin">package main
 
 import rl "vendor:raylib"
