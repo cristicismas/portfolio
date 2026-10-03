@@ -11,18 +11,7 @@ At the end you will be able to create transitions easily using a simple api:
 ```
 my_var: f32 = 0.0
 
-// simple transition
-
 start_transition(&my_var, Transition{initial = 0.0, final = 1.0, time = 2.0, easing = .Sine_In})
-
-// sequence of transitions
-
-sequence_id := create_transition_sequence(&my_var)
-sequence := get_sequence(sequence_id)
-
-push_transition(sequence, Transition{ initial = 0.0, final = 1.0, time = 1.0, easing = .Sine_In })
-push_transition(sequence, Transition{ initial = 1.0, final = 5.0, time = 1.0, easing = .Linear })
-push_transition(sequence, Transition{ initial = 5.0, final = 0.0, time = 1.0, easing = .Sine_Out })
 ```
 
 ## Starting point
