@@ -138,7 +138,7 @@ What this means for our algorithm, is that we can't form a triangle using the cu
 
 So, what do we do in this case? We simply skip the current vertex and head to the next one. Eventually we will be able to form different triangles such that we are __only__ left with triangles.
 
-The rest of the steps in our algorithm remain unchanged. This is the only exception we need to handle for concave polygons. Since the rest of the angles will will form are all acute (less than 180 degrees), the rest of the triangulation is very simple.
+The rest of the steps in our algorithm remain unchanged. This is the only exception we need to handle for concave polygons. Since the rest of the angles we will form are all acute (less than 180 degrees), the rest of the triangulation is very simple.
 
 ![Simple concave polygon triangulated](../images/polygon_triangulation/concave_polygon_triangulated.png)
 
