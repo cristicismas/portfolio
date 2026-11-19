@@ -3,26 +3,31 @@
 
   <url>
     <loc>https://cristi.webcc.uk/index.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-11-19</lastmod>
   </url>
 
   <url>
     <loc>https://cristi.webcc.uk/blog.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-11-19</lastmod>
   </url>
 
   <url>
     <loc>https://cristi.webcc.uk/projects.html</loc>
-    <lastmod>2026-02-12</lastmod>
+    <lastmod>2026-11-19</lastmod>
+  </url>
+
+  <url>
+    <loc>https://cristi.webcc.uk/blog/polygon-triangulation.html</loc>
+    <lastmod>2026-11-19</lastmod>
   </url>
 
   <url>
     <loc>https://cristi.webcc.uk/blog/sat-collision-detection.html</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-11-19</lastmod>
   </url>
 
   <url>
     <loc>https://cristi.webcc.uk/blog/variable-transitions-odin.html</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-11-19</lastmod>
   </url>
 </urlset>
